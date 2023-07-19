@@ -1,6 +1,6 @@
 # Rhitmo teste
 
-Esse projeto foi feito utilizando Angular 10.
+Esse projeto foi feito utilizando Angular 13.
 
 ## Tecnologias usadas
 * HTML
