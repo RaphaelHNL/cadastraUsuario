@@ -1,0 +1,56 @@
+
+<div class="container-title">
+    <div class="container-width">
+        <h1>Lista</h1>
+    </div>
+</div>
+<div class="container">
+    <div>
+        <form>
+            <h2>Lista de Cliente</h2>
+            <hr>
+            <div class="form-group input-container">
+                <label for="nome">Nome do cliente</label>
+                <input type="text" class="form-control" (keyup)="filterTable($event)" name="nome" id="nome" placeholder="Digite seu nome">
+            </div>
+        </form>
+    </div>
+    <div class="container-table">
+        <table>
+            <tr class="border-table">
+                <th class="border-table">Nome</th>
+                <th class="border-table">E-mail</th>
+                <th class="border-table">CPF</th>
+                <th class="border-table">Criado em</th>
+                <th class="th-vazio"></th>
+
+            </tr>
+            <tr *ngFor="let user of listUsers">
+                <td class="border-table">{{user.nome}}</td>
+                <td class="border-table">{{user.email}}</td>
+                <td class="border-table">{{user.cpf | cpf}}</td>
+                <td class="border-table">{{user.dataCadastro}}</td>
+                <td class="buttons-table">
+                    <img (click)="editarUsuario(user.id)" class="icon-space" src="./.././../assets/Editar.svg" alt="editar usuário">
+                    <img (click)="deletarUsuario(user.id)" src="./.././../assets/Excluir.svg" alt="deletar usuário">
+                </td>
+                
+                
+            </tr>
+
+            <tr class="exemplo-td">
+                <td class="border-table">Exemplo de nome</td>
+                <td class="border-table">exemplo@mail.com</td>
+                <td class="border-table">000.000.000-00</td>
+                <td class="border-table">00/00/0000</td>
+                <td class="buttons-table"><span class="icon"><img (click)="adicionarUsuario()" src="./.././../assets/Botao-incluir.svg" alt="editar usuário"></span></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+</div>
+<footer class="container-footer">
+    <p>Seu nome - 2022</p>
+</footer>

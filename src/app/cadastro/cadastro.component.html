@@ -1,0 +1,133 @@
+<div class="container-title">
+    <div class="container-width">
+        <h1>Cadastro</h1>
+    </div>
+</div>
+
+<div class="container">
+    <form [formGroup]="formulario" class="container-width">
+
+        <div class="form-group input-container" [ngClass]="aplicaErroCss('nome')">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" formControlName="nome" required id="nome"
+                placeholder="Digite seu nome">
+
+        </div>
+
+        <div class="form-group input-container"  [ngClass]="aplicaErroCss('email')">
+            <label for="email">E-mail</label>
+            <input type="text" class="form-control" formControlName="email" id="email"
+                placeholder="Digite seu melhor e-mail">
+        </div>
+
+        <div class="form-group input-container"  [ngClass]="aplicaErroCss('cpf')">
+            <label for="cpf">CPF</label>
+            <input type="text" mask="000.000.000-00" maxlength="14" class="form-control" formControlName="cpf" id="cpf"
+                placeholder="Digite o CPF aqui">
+        </div>
+
+        <div class="sub-container">
+            <div class="form-group input-container"  [ngClass]="aplicaErroCss('endereco')">
+                <label for="endereco">Endereço</label>
+                <input type="text" class="form-control " formControlName="endereco" id="endereco"
+                    placeholder="Digite o endereço">
+            </div>
+            <div class="form-group input-container"  [ngClass]="aplicaErroCss('estado')">
+                <label for="estado">Estado</label>
+                <select formControlName="estado" [(ngModel)]="estadoSelected">
+                    <option value="" value="" disabled selected hidden>Selecione o estado</option>
+                    <option [value]="estado" *ngFor="let estado of estados">{{estado}}</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="sub-container">
+            <div class="form-group input-container"  [ngClass]="aplicaErroCss('cep')">
+                <label for="cep" >CEP</label>
+                <input maxlength="8" minlength="8" type="text" class="form-control" formControlName="cep" id="cep"
+                    placeholder="00.000 - 000">
+            </div>
+            <div class="form-group input-container"  [ngClass]="aplicaErroCss('cidade')">
+                <label for="cidade">Cidade</label>
+                <select formControlName="cidade" [(ngModel)]="cidadeSelected">
+                    <option value="" value="" disabled selected hidden>Selecione a Cidade</option>
+                    <option [value]="cidade" *ngFor="let cidade of cidades">{{cidade}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <h2>Forma de Pagamento</h2>
+            <hr>
+
+            <div class="container-radio">
+
+                <mat-radio-group aria-label="Seleciona uma opção">
+                    <mat-radio-button value="Cartão de Crédito" class="cartao-radio" checked>Cartão de
+                        Crédito</mat-radio-button>
+                    <mat-radio-button value="Boleto Bancário">Boleto Bancário</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div class="sub-container">
+                <div class="form-group input-container"  [ngClass]="aplicaErroCss('nomeCartao')">
+                    <label for="nomeCartao">Nome do cartão</label>
+                    <input minlength="5" type="text" class="form-control" formControlName="nomeCartao" id="nomeCartao"
+                        placeholder="Nome impresso no cartão">
+                </div>
+                <div class="form-group input-container">
+
+                    <label for="data">Data de expiração</label>
+                    <div class="container-select">
+                        <div [ngClass]="aplicaErroCss('mes')" class="margin-numero">
+                        <select formControlName="mesCartao" class="cartao-select" [(ngModel)]="mesSelected"
+                            aria-placeholder="Mês">
+                            <option value="" disabled selected hidden>Mês</option>
+                            <option [value]="mes" *ngFor="let mes of mesExpiracao">{{mes}}</option>
+                        </select>
+                    </div>
+                        <div [ngClass]="aplicaErroCss('ano')">
+                        <select class="cartao-select" formControlName="anoCartao" aria-placeholder="ANO"
+                            [(ngModel)]="anoSelected">
+                            <option value="" value="" disabled selected hidden>Ano</option>
+                            <option [value]="ano" [disabled]="ano === 'Ano'" *ngFor="let ano of anoExpiracao">{{ano}}
+                            </option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-container">
+                <div class="form-group input-container" [ngClass]="aplicaErroCss('numeroCartao')">
+                    <label for="numeroCartao">Número do Cartão</label>
+                    <input maxlength="16" minlength="16" type="text" class="form-control" formControlName="numeroCartao"
+                        id="numeroCartao" placeholder="0000 0000 0000 0000">
+                </div>
+                <div class="form-group input-container" [ngClass]="aplicaErroCss('codigoSeguranca')">
+                    <label for="codigoSeguranca">Código de Segurança</label>
+                    <input maxlength="3" minlength="3" type="codigoSeguranca" class="form-control"
+                        formControlName="codigoSeguranca" id="codigoSeguranca" placeholder="XXX">
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="bottom-container">
+                <p>Seu cartão será debitado em R$ 49,00</p>
+                <button [ngClass]="formulario.status === 'INVALID' ?  'disabled-button' : ''"
+                    [disabled]="formulario.status === 'INVALID'" (click)="cadastrarUsuario()">REALIZAR
+                    MATRÍCULA</button>
+                <p class="texto-informacao">Informações seguras são criptografadas</p>
+            </div>
+        </div>
+
+    </form>
+
+
+
+</div>
+<div class="container-footer">
+    <p>Seu nome - 2022</p>
+</div>
